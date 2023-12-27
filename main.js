@@ -27,6 +27,29 @@ let boardSquares;
 let emptySquares;
 let moveInterval;
 
+const createBoard = () => {
+    boardSquares.forEach((row, rowIndex) => {
+        row.forEach((column, columnIndex) => {
+            const squareValue = `${rowIndex}${columnIndex}`;
+            const squareElement = document.createElement('div');
+            squareElement.setAttribute('class', 'square emptySquare');
+            squareElement.setAttribute('id', squareValue);
+            board.appendChild(squareElement);
+            emptySquares.push(squareValue);
+        })
+    })
+}
+
+const setGame = () => {
+    snake = ['00', '01', '02', '03'];
+    score = snake.length;
+    direction = 'ArrowRight';
+    boardSquares = Array.from(Array(boardSize), () => new Array(boardSize).fill(squareTypes.emptySquare));
+    board.innerHTML = '';
+    emptySquares = [];
+    createBoard();
+}   
+
 
 const startGame = () => {
     setGame();
